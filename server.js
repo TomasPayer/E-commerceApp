@@ -3,6 +3,8 @@ const session = require('express-session');
 const handlebars = require('express-handlebars');
 const routes = require('./src/routes/routes')
 const UserModel = require('./src/models/usuarios');
+const productsRouter = require('./src/routes/productos');
+const pageRouter = require('./src/routes/routes')
 
 const { TIEMPO_EXPIRACION } = require('./src/config/globals')
 const {validatePass} = require('./src/utils/passValidator');
@@ -48,8 +50,10 @@ app.use(session({
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/api/productos', productsRouter);
+app.use('', pageRouter);
 
 app.engine(
     "hbs", 
@@ -64,6 +68,7 @@ app.engine(
         }
     })
 );
+
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
 app.use(express.static(__dirname + "/public"));

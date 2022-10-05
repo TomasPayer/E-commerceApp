@@ -3,6 +3,8 @@
 // ------------------------------------------------------------------------------
 
 
+
+
 function getRoot(req, res) {
     res.render('main')
 }
@@ -86,6 +88,8 @@ module.exports = {
     postSignup,
     getFailsignup,
     checkAuthentication,
-    getProfile
+    getProfile,
 }
+
+
   
