@@ -3,8 +3,7 @@ const session = require('express-session');
 const handlebars = require('express-handlebars');
 const routes = require('./src/routes/routes')
 const UserModel = require('./src/models/usuarios');
-const productsRouter = require('./src/routes/productos');
-const pageRouter = require('./src/routes/routes')
+import routesProductos from "./src/routes/routesProductos"
 
 const { TIEMPO_EXPIRACION } = require('./src/config/globals')
 const {validatePass} = require('./src/utils/passValidator');
@@ -19,21 +18,6 @@ const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
-const messages = [
-    { author: "Juan", text: 'Hola que tal?'},
-    { author: "Pedro", text: 'Muy y vos?'},
-    { author: "Ana", text: 'Genial'}
-];
-
-io.on('connection', (socket) => {
-    console.log('Connected user');
-    socket.emit('messages', messages);
-
-    socket.on('new-message', data => {
-        messages.push(data);
-        io.sockets.emit('messages', messages);
-    })
-})
 
 app.use(session({
     secret: 'coderhouse',
@@ -52,7 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api/productos', productsRouter);
+app.use("/productos", routesProductos) 
+
 
 
 app.engine(
