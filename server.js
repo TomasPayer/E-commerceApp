@@ -53,7 +53,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api/productos', productsRouter);
-app.use('', pageRouter);
+
 
 app.engine(
     "hbs", 
