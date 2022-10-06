@@ -18,7 +18,7 @@ const obtenerProductos = async(req, res) => {
         const productos = await Producto.find()
         res.status(200).json(productos)
     } catch (er) {
-        const error = new Error("No se pudo crear el producto")
+        const error = new Error("No se pudo obtener el producto")
         return res.status(404).json({msg:error.message})
         
     }
@@ -30,7 +30,7 @@ const obtenerProductoPorId = async(req, res) => {
         const productos = await Producto.findById(id)
         res.status(200).json(productos)
     } catch (er) {
-        const error = new Error("No se pudo crear el producto")
+        const error = new Error("No se pudo obtener el producto por id")
         return res.status(404).json({msg:error.message})
         
     }

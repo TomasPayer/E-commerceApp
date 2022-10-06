@@ -11,13 +11,12 @@ const {createHash} = require('./src/utils/hashGenerator')
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 const { Server: HttpServer } = require('http');
 const { Server:IOServer } = require('socket.io');
-
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
-
 
 app.use(session({
     secret: 'coderhouse',
@@ -168,3 +167,21 @@ const server = app.listen(8080, () => {
 
 
 server.on('error', error => console.log(`Error en el servidor ${error}`))
+
+//CHAT
+
+const messages = [
+    { author: "Juan", text: 'Hola que tal?'},
+    { author: "Pedro", text: 'Muy y vos?'},
+    { author: "Ana", text: 'Genial'}
+];
+
+io.on('connection', (socket) => {
+    console.log('Connected user');
+    socket.emit('messages', messages);
+
+    socket.on('new-message', data => {
+        messages.push(data);
+        io.sockets.emit('messages', messages);
+    })
+})

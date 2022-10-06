@@ -24,7 +24,7 @@ function getEcommerce(req, res) {
 
 function postLogin (req, res) {
     if (req.isAuthenticated()) {
-        res.redirect('ecommerce')
+        res.redirect('productos')
     } else {
         res.redirect('login')
     }
