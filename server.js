@@ -3,7 +3,7 @@ const session = require('express-session');
 const handlebars = require('express-handlebars');
 const routes = require('./src/routes/routes')
 const UserModel = require('./src/models/usuarios');
-import routesProductos from "./src/routes/routesProductos"
+const routesProductos = require("./src/routes/routesProductos")
 
 const { TIEMPO_EXPIRACION } = require('./src/config/globals')
 const {validatePass} = require('./src/utils/passValidator');

@@ -1,4 +1,4 @@
-import Producto from "../models/productos";
+const Producto = require("../models/productos");
 
 const crearProducto = async(req, res) => {
     try {
@@ -38,4 +38,4 @@ const obtenerProductoPorId = async(req, res) => {
 
 
 
-export {crearProducto, obtenerProductos, obtenerProductoPorId}
+module.exports = {crearProducto, obtenerProductos, obtenerProductoPorId}
