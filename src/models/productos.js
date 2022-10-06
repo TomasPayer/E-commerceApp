@@ -9,6 +9,6 @@ const productoSchema = mongoose.Schema({
     categoria: {type: String, required: true, max: 100},
 });
 
-const Producto = mongoose.model("Producto", productoSchema)
 
-module.exports = Producto
+
+module.exports = mongoose.model("Producto", productoSchema)
