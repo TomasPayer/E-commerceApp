@@ -18,9 +18,13 @@ function getSignup(req, res) {
     res.render('signup');
 }
 
+function getEcommerce(req, res) {
+    res.render('ecommerce');
+}
+
 function postLogin (req, res) {
     if (req.isAuthenticated()) {
-        res.redirect('profile')
+        res.redirect('ecommerce')
     } else {
         res.redirect('login')
     }
@@ -86,6 +90,7 @@ module.exports = {
     getFailsignup,
     checkAuthentication,
     getProfile,
+    getEcommerce
 }
 
 

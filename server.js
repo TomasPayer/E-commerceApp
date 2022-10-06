@@ -156,6 +156,9 @@ app.get('/ruta-protegida', routes.checkAuthentication, (req, res) => {
     res.render('protected')
 });
 
+// E-COMMERCE PAGE
+app.get('/ecommerce', routes.getEcommerce);
+
 //  FAIL ROUTE
 app.get('*', routes.failRoute);
 
