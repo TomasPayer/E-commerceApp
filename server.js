@@ -3,7 +3,8 @@ const session = require('express-session');
 const handlebars = require('express-handlebars');
 const routes = require('./src/routes/routes')
 const UserModel = require('./src/models/usuarios');
-const routesProductos = require("./src/routes/routesProductos")
+const routesProductos = require("./src/routes/routesProductos");
+const routesCarrito = require("./src/routes/routesCarrito")
 
 const { TIEMPO_EXPIRACION } = require('./src/config/globals')
 const {validatePass} = require('./src/utils/passValidator');
@@ -35,7 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/productos", routesProductos) 
+app.use("/productos", routesProductos);
+app.use("/carrito", routesCarrito)  
 
 
 
